@@ -1,0 +1,6 @@
+[book]
+authors = ["Junyoung, Sung"]
+language = "en"
+multilingual = false
+src = "src"
+title = "Rook (Ceph) Korean Documentation"
