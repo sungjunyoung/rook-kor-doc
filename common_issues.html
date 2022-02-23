@@ -135,6 +135,43 @@
                 <div id="content" class="content">
                     <main>
                         <h1 id="common-issues"><a class="header" href="#common-issues">Common Issues</a></h1>
+<p>Rook 클러스터를 운영하면서 트러블슈팅을 돕기 위한 몇몇 팁들입니다. 이 페이지에서 찾은 해결방안으로 시도해도 문제가 해결되지 않은 경우, <a href="https://slack.rook.io/">Rook Slack 가입</a> 후 General 채널에서 도움을 요청하세요. </p>
+<h2 id="ceph"><a class="header" href="#ceph">Ceph</a></h2>
+<p>Ceph 에 관련된 이슈들은 <a href="/ceph_tools/common_issues.html">Ceph Common Issues</a> 페이지를 참고하세요.</p>
+<h2 id="troubleshooting-techniques"><a class="header" href="#troubleshooting-techniques">Troubleshooting Techniques</a></h2>
+<p>쿠버네티스 상태와 로그는 Rook 클러스터 이슈를 확인하는데 필요한 중요 리소스입니다.</p>
+<h2 id="kubernetes-tools"><a class="header" href="#kubernetes-tools">Kubernetes Tools</a></h2>
+<p>쿠버네티스 상태는 클러스터가 정상 동작하지 않을 때 가장 처음 확인해야할 리소스입니다. 아래 방법들이 상태를 확인하는데 도움을 줄 수 있습니다.</p>
+<ul>
+<li>Rook pod status
+<ul>
+<li><code>kubectl get po -n &lt;cluster-namespace&gt; -o wide</code></li>
+</ul>
+</li>
+<li>Logs for Rook pods
+<ul>
+<li>오퍼레이터 로그: <code>kubectl logs -n &lt;cluster-namespace&gt; -l app=&lt;storage-backend-operator&gt;</code></li>
+<li>특정 Pod 에 대한 로그: <code>kubectl logs -n &lt;cluster-namespace&gt; &lt;pod-name&gt;</code>, 혹은 pod label (ex. mon1) 로 조회: <code>kubectl logs -n &lt;cluster-namespace&gt; -l &lt;label-matcher&gt;</code></li>
+<li>PVC 가 왜 마운트에 실패했는지에 대한 로그: 
+<ul>
+<li>노드에 연결하고, kubelet 로그를 확인합니다: <code>journalctl -u kubelet</code></li>
+</ul>
+</li>
+<li>여러 컨테이너가 동작하는 Pod
+<ul>
+<li>모든 컨테이너에 대해서: <code>kubectl -n &lt;cluster-namespace&gt; logs &lt;pod-name&gt; --all-containers</code></li>
+<li>특정 컨테이너에 대해서: <code>kubectl -n &lt;cluster-namespace&gt; logs &lt;pod-name&gt; -c &lt;container-name&gt;</code></li>
+</ul>
+</li>
+<li>더 이상 running 상태가 아닌 Pod 로그 확인: <code>kubectl -n &lt;cluster-namespace&gt; logs --previous &lt;pod-name&gt;</code></li>
+</ul>
+</li>
+</ul>
+<p>몇몇 Pod 들은 initContainers 스펙을 가지고 있으며, pod 내에서 다른 컨테이너의 로그를 확인해야 할 수 도 있습니다.</p>
+<ul>
+<li><code>kubectl -n &lt;namespace&gt; logs &lt;pod-name&gt; -c &lt;container-name&gt;</code></li>
+<li>다른 Rook 컴포넌트들: <code>kubectl -n &lt;cluster-namespace&gt; get all</code></li>
+</ul>
 
                     </main>
 
