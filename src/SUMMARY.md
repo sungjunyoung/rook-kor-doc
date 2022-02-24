@@ -50,6 +50,7 @@
   - [OSD Management](./ceph_tools/osd_management.md)
   - [Direct Tools](./ceph_tools/direct_tools.md)
   - [Advanced Configuration](./ceph_tools/advanced_configuration.md)
+  - [Openshift Common Issues](./ceph_tools/openshift_common_issues.md)
   - [Disaster Recovery](./ceph_tools/disaster_recovery.md)
 
 
