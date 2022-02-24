@@ -10,6 +10,7 @@
 - [Ceph Storage](ceph_storage/ceph_storage.md)
   - [Admission Controller](ceph_storage/admission_controller.md)
   - [Examples](ceph_storage/examples.md)
+  - [Openshift](ceph_storage/openshift.md)
   - [Block Storage](ceph_storage/block_storage.md)
   - [Object Storage](ceph_storage/object_storage.md)
   - [Shared Filesystem](ceph_storage/shared_filesystem.md)
