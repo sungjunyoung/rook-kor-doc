@@ -24,7 +24,7 @@ kubectl -n rook-ceph rollout status deploy/rook-ceph-tools
 
 rook-ceph-tools 가 `Running` 상태이면, Pod 에 연결해 커맨드를 실행할 수 있습니다.
 
-**Example*
+**Example**
 - `ceph status`
 - `ceph osd status`
 - `ceph df`
